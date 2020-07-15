@@ -2,7 +2,7 @@ cuda_num = 0
 LR = 0.001
 epoch = 200
 show_train_result_every_batch = 100
-test_every_epoch = 1
+test_every_epoch = 1  # test
 save_model_every_epoch = 1
 
 height = 40
@@ -19,6 +19,3 @@ model_name = 'model_%s.pkl'
 model_dir = 'models/'
 transform_img_dir = 'transform_img'
 mode = 'stn'
-
-
-
