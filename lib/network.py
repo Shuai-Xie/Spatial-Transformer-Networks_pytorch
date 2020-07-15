@@ -69,10 +69,12 @@ class LocalNetwork(nn.Module):
         batch_size = img.size(0)
 
         theta = self.fc(img.view(batch_size, -1)).view(batch_size, 2, 3)
+        # theta 限制范围为 [-1, 1.]
+        # 平移变换：不会移出 1/4 边界
+        # 旋转变换：
 
         # torch1.4 后，默认将 align_corners=False, 与 interpolate 函数一致
         grid = F.affine_grid(theta, size=[batch_size, cfg.channel, cfg.height, cfg.width])  # torch.Size([1, 40, 40, 2])
-        # print(grid[0, 0, 0, :])
         img_transform = F.grid_sample(img, grid)
 
         return img_transform
